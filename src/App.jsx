@@ -1,10 +1,22 @@
 import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
-import FilmList from "./components/FilmList";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import FilmDetailPage from "./pages/FilmDetailPage";
+import FavoritesPage from "./pages/FavoritesPage";
 
 function App() {
   const url = "https://ghibliapi.vercel.app/films";
   const [films, setFilms] = useState([]);
+  const [favorites, setFavorites] = useState([]); // état pour les fils en favoris
+
+  const toggleFavorite = (filmId) => {
+    if (favorites.includes(filmId)) {
+      setFavorites(favorites.filter((id) => id !== filmId));
+    } else {
+      setFavorites([...favorites, filmId]);
+    }
+  };
 
   const getMovies = async () => {
     const request = await fetch(url);
@@ -18,13 +30,43 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <BrowserRouter>
       <Navbar />
       <main>
-        <h1>Ghibli App - Vidéothèque</h1>
-        <FilmList films={films} />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <HomePage
+                films={films}
+                favorites={favorites}
+                toggleFavorite={toggleFavorite}
+              />
+            }
+          />
+          <Route
+            path="/film/:id"
+            element={
+              <FilmDetailPage
+                films={films}
+                favorites={favorites}
+                toggleFavorite={toggleFavorite}
+              />
+            }
+          />
+          <Route
+            path="/favorites"
+            element={
+              <FavoritesPage
+                films={films.filter((f) => favorites.includes(f.id))}
+                favorites={favorites}
+                toggleFavorite={toggleFavorite}
+              />
+            }
+          />
+        </Routes>
       </main>
-    </div>
+    </BrowserRouter>
   );
 }
 

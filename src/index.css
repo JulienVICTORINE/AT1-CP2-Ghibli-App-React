@@ -68,3 +68,19 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.film-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.favorite-button {
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: gold;
+  transition: transform 0.2s;
+}
+
+.favorite-button:hover {
+  transform: scale(1.2);
+}
