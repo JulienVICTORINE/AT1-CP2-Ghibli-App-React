@@ -1,7 +1,5 @@
 /* NAVBAR */
 .navbar {
-  top: 0;
-  left: 0;
   width: 100%;
   background-color: black;
   color: white;
@@ -26,7 +24,6 @@
 .nav-links {
   display: flex;
   gap: 25px;
-  list-style: none;
 }
 
 .nav-links a {
@@ -46,6 +43,7 @@
 }
 
 .nav-links a.active::after {
+  content: "";
   position: absolute;
   bottom: -5px;
   left: 0;

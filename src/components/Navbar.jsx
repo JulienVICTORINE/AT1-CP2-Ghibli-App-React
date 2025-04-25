@@ -5,17 +5,18 @@ import "../Navbar.css";
 function Navbar() {
   return (
     <nav className="navbar">
-      <Link to="/" className="logo">
+      <NavLink to="/" className="logo">
         Ghibli App
-      </Link>
-      <NavLink to="/" end>
-        Accueil
       </NavLink>
-      <NavLink to="/favorites" end>
-        Favoris
-      </NavLink>
+      <div className="nav-links">
+        <NavLink to="/" end>
+          Accueil
+        </NavLink>
+        <NavLink to="/favorites" end>
+          Favoris
+        </NavLink>
+      </div>
     </nav>
   );
 }
-
 export default Navbar;
