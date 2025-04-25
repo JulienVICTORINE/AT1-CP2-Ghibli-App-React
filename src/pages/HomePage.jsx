@@ -10,6 +10,7 @@ function HomePage({ films, favorites, toggleFavorite }) {
     setFilteredFilms(films);
   }, [films]);
 
+  // Trie des films
   const sortFilms = (criterion) => {
     const sorted = [...filteredFilms].sort((a, b) => {
       if (criterion == "score") {
