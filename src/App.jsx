@@ -30,43 +30,45 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter>
-      <Navbar />
-      <main>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <HomePage
-                films={films}
-                favorites={favorites}
-                toggleFavorite={toggleFavorite}
-              />
-            }
-          />
-          <Route
-            path="/film/:id"
-            element={
-              <FilmDetailPage
-                films={films}
-                favorites={favorites}
-                toggleFavorite={toggleFavorite}
-              />
-            }
-          />
-          <Route
-            path="/favorites"
-            element={
-              <FavoritesPage
-                films={films.filter((f) => favorites.includes(f.id))}
-                favorites={favorites}
-                toggleFavorite={toggleFavorite}
-              />
-            }
-          />
-        </Routes>
-      </main>
-    </BrowserRouter>
+    <div style={{ width: "100%" }}>
+      <BrowserRouter>
+        <Navbar />
+        <main>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <HomePage
+                  films={films}
+                  favorites={favorites}
+                  toggleFavorite={toggleFavorite}
+                />
+              }
+            />
+            <Route
+              path="/film/:id"
+              element={
+                <FilmDetailPage
+                  films={films}
+                  favorites={favorites}
+                  toggleFavorite={toggleFavorite}
+                />
+              }
+            />
+            <Route
+              path="/favorites"
+              element={
+                <FavoritesPage
+                  films={films.filter((f) => favorites.includes(f.id))}
+                  favorites={favorites}
+                  toggleFavorite={toggleFavorite}
+                />
+              }
+            />
+          </Routes>
+        </main>
+      </BrowserRouter>
+    </div>
   );
 }
 

@@ -133,46 +133,6 @@ button:focus-visible {
   color: white;
 }
 
-/* Navbar */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #111;
-  padding: 15px 30px;
-  color: white;
-  box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
-}
-
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: white;
-  text-decoration: none;
-}
-
-.nav-links {
-  display: flex;
-  gap: 20px;
-}
-
-.nav-links a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  position: relative;
-}
-
-.nav-links a.active::after {
-  content: "";
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  height: 2px;
-  width: 100%;
-  background-color: white;
-}
-
 .film-detail {
   background-color: #1c1c1c;
   color: white;
@@ -199,4 +159,28 @@ button:focus-visible {
 .film-detail p {
   font-size: 1.1rem;
   margin: 10px 0;
+}
+
+/* Sort buttons pour trier les films */
+.sort-buttons {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.sort-buttons button {
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sort-buttons button:hover {
+  background-color: #ffcc00;
+  color: black;
+  border-color: #ffcc00;
 }
