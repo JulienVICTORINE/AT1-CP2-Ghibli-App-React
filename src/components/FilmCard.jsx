@@ -1,11 +1,23 @@
 // card pour afficher un film
+import { useRef } from "react";
 import { Link } from "react-router-dom";
 
-const FilmCard = ({ film, toggleFavorite, isFavorite }) => {
+const FilmCard = ({ film, toggleFavorite, favorites }) => {
+  const starRef = useRef(null);
+  const isFavorite = favorites.includes(film.id);
+
   const handleClick = (e) => {
     e.preventDefault(); // empêche la redirection
     toggleFavorite(film.id); // ajoute ou retire le favori
   };
+
+  // animation
+  if (starRef.current) {
+    starRef.current.classList.add("animate");
+    setTimeout(() => {
+      starRef.current.classList.remove("animate");
+    }, 300);
+  }
 
   return (
     <Link to={`/film/${film.id}`} className="film-link">
@@ -21,6 +33,7 @@ const FilmCard = ({ film, toggleFavorite, isFavorite }) => {
           <span> {film.release_date}</span>
         </p>
         <span
+          ref={starRef}
           className={`star ${isFavorite ? "active" : ""}`}
           onClick={handleClick}
         >

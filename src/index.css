@@ -133,6 +133,22 @@ button:focus-visible {
   color: white;
 }
 
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.star.animate {
+  animation: pop 0.3s ease;
+}
+
 .film-detail {
   background-color: #1c1c1c;
   color: white;

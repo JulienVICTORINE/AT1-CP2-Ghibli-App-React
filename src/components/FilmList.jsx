@@ -17,7 +17,7 @@ const FilmList = ({ films, favorites, toggleFavorite }) => {
         <FilmCard
           key={film.id}
           film={film}
-          favorites={favorites.includes(film.id)}
+          favorites={favorites}
           toggleFavorite={toggleFavorite}
         />
       ))}
