@@ -5,9 +5,9 @@ import "../Navbar.css";
 function Navbar() {
   return (
     <nav className="navbar">
-      <NavLink to="/" className="logo">
+      <Link to="/" className="logo">
         Ghibli App
-      </NavLink>
+      </Link>
       <div className="nav-links">
         <NavLink to="/" end>
           Accueil

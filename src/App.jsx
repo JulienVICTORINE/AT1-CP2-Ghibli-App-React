@@ -8,15 +8,11 @@ import FavoritesPage from "./pages/FavoritesPage";
 function App() {
   const url = "https://ghibliapi.vercel.app/films";
   const [films, setFilms] = useState([]);
-  const [favorites, setFavorites] = useState([]); // état pour les fils en favoris
-
-  const toggleFavorite = (filmId) => {
-    if (favorites.includes(filmId)) {
-      setFavorites(favorites.filter((id) => id !== filmId));
-    } else {
-      setFavorites([...favorites, filmId]);
-    }
-  };
+  const [favorites, setFavorites] = useState(() => {
+    // Chargement initial depuis localStorage
+    const savedFavorites = localStorage.getItem("favorites");
+    return savedFavorites ? JSON.parse(savedFavorites) : [];
+  }); // état pour les films en favoris
 
   const getMovies = async () => {
     const request = await fetch(url);
@@ -29,46 +25,57 @@ function App() {
     getMovies();
   }, []);
 
+  useEffect(() => {
+    // À chaque changement de favorites -> mettre à jour localStorage
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
+
+  const toggleFavorite = (filmId) => {
+    if (favorites.includes(filmId)) {
+      setFavorites(favorites.filter((id) => id !== filmId));
+    } else {
+      setFavorites([...favorites, filmId]);
+    }
+  };
+
   return (
-    <div style={{ width: "100%" }}>
-      <BrowserRouter>
-        <Navbar />
-        <main>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <HomePage
-                  films={films}
-                  favorites={favorites}
-                  toggleFavorite={toggleFavorite}
-                />
-              }
-            />
-            <Route
-              path="/film/:id"
-              element={
-                <FilmDetailPage
-                  films={films}
-                  favorites={favorites}
-                  toggleFavorite={toggleFavorite}
-                />
-              }
-            />
-            <Route
-              path="/favorites"
-              element={
-                <FavoritesPage
-                  films={films.filter((f) => favorites.includes(f.id))}
-                  favorites={favorites}
-                  toggleFavorite={toggleFavorite}
-                />
-              }
-            />
-          </Routes>
-        </main>
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <Navbar />
+      <main>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <HomePage
+                films={films}
+                favorites={favorites}
+                toggleFavorite={toggleFavorite}
+              />
+            }
+          />
+          <Route
+            path="/film/:id"
+            element={
+              <FilmDetailPage
+                films={films}
+                favorites={favorites}
+                toggleFavorite={toggleFavorite}
+              />
+            }
+          />
+          <Route
+            path="/favorites"
+            element={
+              <FavoritesPage
+                films={films.filter((f) => favorites.includes(f.id))}
+                favorites={favorites}
+                toggleFavorite={toggleFavorite}
+              />
+            }
+          />
+        </Routes>
+      </main>
+    </BrowserRouter>
   );
 }
 
