@@ -1,8 +1,15 @@
-function FavoritesPage({ films }) {
+import FilmList from "../components/FilmList";
+
+function FavoritesPage({ films, favorites, toggleFavorite }) {
   return (
     <div>
       <h2>Mes films favoris</h2>
-      <p>À implémenter : système de favoris</p>
+
+      <FilmList
+        films={films}
+        favorites={favorites}
+        toggleFavorite={toggleFavorite}
+      />
     </div>
   );
 }

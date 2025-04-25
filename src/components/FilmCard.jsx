@@ -1,12 +1,12 @@
 // card pour afficher un film
 import { Link } from "react-router-dom";
-import "../FilmCard.css";
 
-const FilmCard = ({ film, toggleFavorite }) => {
+const FilmCard = ({ film, toggleFavorite, isFavorite }) => {
   const handleClick = (e) => {
-    e.preventDefault();
-    toggleFavorite(film.id);
+    e.preventDefault(); // empêche la redirection
+    toggleFavorite(film.id); // ajoute ou retire le favori
   };
+
   return (
     <Link to={`/film/${film.id}`} className="film-link">
       <div className="film-card">
@@ -20,9 +20,12 @@ const FilmCard = ({ film, toggleFavorite }) => {
           <strong>Année :</strong>
           <span> {film.release_date}</span>
         </p>
-        <button className="favorite-button" onClick={handleClick}>
-          &#9734;
-        </button>
+        <span
+          className={`star ${isFavorite ? "active" : ""}`}
+          onClick={handleClick}
+        >
+          {isFavorite ? "★" : "☆"}
+        </span>
       </div>
     </Link>
   );
