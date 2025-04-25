@@ -10,7 +10,7 @@ const FilmList = ({ films, favorites, toggleFavorite }) => {
         flexWrap: "wrap",
         justifyContent: "center",
         padding: "2rem",
-        gap: "10px",
+        gap: "15px",
       }}
     >
       {films.map((film) => (
